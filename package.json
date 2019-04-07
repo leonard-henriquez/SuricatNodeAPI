@@ -1,0 +1,21 @@
+{
+  "name": "SuricatNodeAPI",
+  "version": "1.0.0",
+  "description": "Suricat Node API",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "./node_modules/nodemon/bin/nodemon.js ./src/index.js"
+  },
+  "engines": {
+    "node": "10.13.3"
+  },
+  "author": "Leonard Henriquez",
+  "license": "MIT",
+  "dependencies": {
+    "boom": "^7.3.0",
+    "fastify": "^2.2.0",
+    "fastify-swagger": "^2.3.2",
+    "mongoose": "^5.4.22",
+    "nodemon": "^1.18.10"
+  }
+}
