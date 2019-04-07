@@ -15,10 +15,10 @@
     "boom": "^7.3.0",
     "fastify": "^2.2.0",
     "fastify-swagger": "^2.3.2",
-    "mongoose": "^5.4.22",
-    "nodemon": "^1.18.10"
+    "mongoose": "^5.4.22"
   },
   "devDependencies": {
+    "nodemon": "^1.18.10",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0"
