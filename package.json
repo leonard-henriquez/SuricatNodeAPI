@@ -4,7 +4,7 @@
   "description": "Suricat Node API",
   "main": "src/index.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js ./src/index.js"
+    "start": "./node_modules/nodemon/bin/nodemon.js --exec babel-node ./src/index.js"
   },
   "engines": {
     "node": "10.15.3"
@@ -12,13 +12,17 @@
   "author": "Leonard Henriquez",
   "license": "MIT",
   "dependencies": {
+    "@babel/preset-env": "^7.4.3",
     "boom": "^7.3.0",
+    "dev": "^0.1.3",
     "dotenv": "^7.0.0",
     "fastify": "^2.2.0",
     "fastify-swagger": "^2.3.2",
     "mongoose": "^5.4.22"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
