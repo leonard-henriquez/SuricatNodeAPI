@@ -1,18 +1,34 @@
 const config = require('./');
+const logger = require('./logger')('error');
 
-const errorHandler = (err, req, res, _next) => {
+// Build response for the client
+const response = (err) => {
   let msg = '';
-  if (config.env !== 'development') {
+  if (config.env === 'development') {
     msg = err.message;
   }
 
-  res.status(err.status || 500).json({
+  return {
     message: msg,
     error: err,
-  });
+  };
+};
+
+// Build error message for our logs
+const logMessage = err => ({ message: err.message, stack: err.stack.split('\n') });
+
+// Error handler
+const errorHandler = (err, req, res, _next) => {
+  // Log error
+  logger.error(logMessage(err));
+
+  // Send response
+  res.status(err.status || 500)
+    .json(response(err));
 };
 
 module.exports = (app) => {
+  // Register errorHandler as a middleware
   app.use(errorHandler);
 
   return app;
