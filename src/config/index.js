@@ -11,7 +11,6 @@ const mongoURI = process.env.MONGO_URI;
 
 // Logs
 const logFilename = path.join(appRoot, 'logs', 'app.log');
-const logFormat = process.env.LOG_FORMAT || 'combined';
 const logLevel = process.env.LOG_LEVEL || 'debug';
 
 // Export config
@@ -22,7 +21,6 @@ module.exports = {
   port,
   debug,
   mongoURI,
-  logFormat,
   logLevel,
   logFilename,
 };
