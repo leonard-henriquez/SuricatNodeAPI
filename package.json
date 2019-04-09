@@ -4,7 +4,8 @@
   "description": "Suricat Node API",
   "main": "src/index.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js --exec babel-node ./src/index.js"
+    "start": "./node_modules/.bin/nodemon.js --exec babel-node ./src/index.js",
+    "lint": "./node_modules/.bin/eslint -c ./.eslintrc.json ./src"
   },
   "engines": {
     "node": "10.15.3"

@@ -1,6 +1,6 @@
 const config = require('./');
 
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res, _next) => {
   let msg = '';
   if (config.env !== 'development') {
     msg = err.message;
