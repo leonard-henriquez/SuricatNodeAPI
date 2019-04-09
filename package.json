@@ -7,7 +7,7 @@
     "start": "./node_modules/.bin/nodemon --exec babel-node src/index.js",
     "lint": "./node_modules/.bin/eslint -c .eslintrc.json src",
     "build": "./node_modules/.bin/babel src --out-dir dist",
-    "serve": "./node dist/index.js"
+    "serve": "NODE_ENV=production LOG_LEVEL=error node dist/index.js"
   },
   "engines": {
     "node": "10.15.3"
