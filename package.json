@@ -4,10 +4,10 @@
   "description": "Suricat Node API",
   "main": "src/index.js",
   "scripts": {
-    "start": "node_modules/.bin/nodemon.js --exec babel-node src/index.js",
-    "lint": "node_modules/.bin/eslint -c .eslintrc.json src",
-    "build": "node_modules/.bin/babel src --out-dir dist",
-    "serve": "node dist/index.js"
+    "start": "./node_modules/.bin/nodemon --exec babel-node src/index.js",
+    "lint": "./node_modules/.bin/eslint -c .eslintrc.json src",
+    "build": "./node_modules/.bin/babel src --out-dir dist",
+    "serve": "./node dist/index.js"
   },
   "engines": {
     "node": "10.15.3"
