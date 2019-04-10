@@ -1,25 +1,25 @@
-const { Router } = require('express');
-const { User } = require('../models/user');
-const users = require('../controllers/users');
+import { Router } from 'express'
+import User from '../models/user'
+import users from '../controllers/users'
 
-const models = { User };
+const models = { User }
 
 // Register routes
-module.exports = (app) => {
+export default (app) => {
   // Instanciate router
-  const router = Router();
+  const router = Router()
 
   // Create routes
-  router.use('/users', users(models));
+  router.use('/users', users(models))
 
   // Route for ping
   router.get('/health', async (req, res) => {
-    res.status(200).send();
-  });
+    res.status(200).send()
+  })
 
   // Register routes
-  app.use('/api', router);
+  app.use('/api', router)
 
   // Return app
-  return app;
-};
+  return app
+}

@@ -1,10 +1,12 @@
-const mongoose = require('mongoose');
-const config = require('./');
-const logger = require('./logger')('db');
+import mongoose from 'mongoose'
+import { debug, mongoURI } from '.'
+import loggerFactory from './logger'
 
-module.exports = () => {
+const logger = loggerFactory('db')
+
+export default () => {
   // Set debug
-  if (config.debug) {
+  if (debug) {
     mongoose.set('debug', (coll, method, query, doc, options) => {
       logger.info({
         coll,
@@ -12,15 +14,15 @@ module.exports = () => {
         query,
         doc,
         options,
-      });
-    });
+      })
+    })
   }
 
   // Connect to MongoDb
-  mongoose.connect(config.mongoURI, { useNewUrlParser: true })
+  mongoose.connect(mongoURI, { useNewUrlParser: true })
     .then(() => logger.info('MongoDB connected…'))
-    .catch(err => logger.error(err));
+    .catch(err => logger.error(err))
 
   // Return connection
-  return mongoose.connection;
-};
+  return mongoose.connection
+}

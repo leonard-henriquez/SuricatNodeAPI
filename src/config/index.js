@@ -1,26 +1,14 @@
-require('dotenv').config();
-const path = require('path');
+import {} from 'dotenv/config'
+import path from 'path'
 
 // Environment settings
-const appRoot = path.resolve(path.join(__dirname, '..', '..'));
-const env = process.env.NODE_ENV || 'development';
-const host = process.env.HOST || '0.0.0.0';
-const port = process.env.PORT || 3000;
-const debug = process.env.DEBUG || (env === 'development');
-const mongoURI = process.env.MONGO_URI;
+export const appRoot = path.resolve(path.join(__dirname, '..', '..'))
+export const env = process.env.NODE_ENV || 'development'
+export const host = process.env.HOST || '0.0.0.0'
+export const port = process.env.PORT || 3000
+export const debug = process.env.DEBUG || (env === 'development')
+export const mongoURI = process.env.MONGO_URI
 
 // Logs
-const logFilename = path.join(appRoot, 'logs', 'app.log');
-const logLevel = process.env.LOG_LEVEL || 'debug';
-
-// Export config
-module.exports = {
-  appRoot,
-  env,
-  host,
-  port,
-  debug,
-  mongoURI,
-  logLevel,
-  logFilename,
-};
+export const logFilename = path.join(appRoot, 'logs', 'app.log')
+export const logLevel = process.env.LOG_LEVEL || 'debug'

@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "./node_modules/.bin/nodemon --exec babel-node src/index.js",
+    "fix": "./node_modules/.bin/eslint --fix -c .eslintrc.json src",
     "lint": "./node_modules/.bin/eslint -c .eslintrc.json src",
     "build": "./node_modules/.bin/babel src --out-dir dist",
     "serve": "NODE_ENV=production LOG_LEVEL=error node dist/index.js"

@@ -1,32 +1,39 @@
-const express = require('express');
-const config = require('./config');
-const logger = require('./config/logger')('server');
+import express from 'express'
+import { env, port, host } from './config'
+import connect from './config/db'
+import middlewares from './config/middlewares'
+import routes from './config/routes'
+import errorHandler from './config/error-handler'
+import loggerFactory from './config/logger'
+
 
 // Instantiate express framework and apply middlewares
-const app = express();
+const app = express()
 
 // Connect to database
-require('./config/db')();
+connect()
 
 // Add middlewares
-require('./config/middlewares')(app);
+middlewares(app)
 
 // Import routes
-require('./config/routes')(app);
+routes(app)
 
 // Add error handler
-require('./config/error-handler')(app);
+errorHandler(app)
 
 // Create server
 const start = async () => {
+  const logger = loggerFactory('server')
+
   try {
-    await app.listen(config.port, config.host);
-    logger.info(`Server listening on ${config.port} in ${config.env}`);
+    await app.listen(port, host)
+    logger.info(`Server listening on ${host}:${port} in ${env} mode`)
   } catch (err) {
-    logger.error(err);
-    process.exit(1);
+    logger.error(err)
+    process.exit(1)
   }
-};
+}
 
 // Instanciate server
-start();
+start()

@@ -1,5 +1,5 @@
-const { createLogger, format, transports } = require('winston');
-const config = require('.');
+import { createLogger, format, transports } from 'winston'
+import { logLevel, logFilename } from '.'
 
 // Destructures format for easier access
 const {
@@ -7,13 +7,13 @@ const {
   timestamp,
   prettyPrint,
   label,
-} = format;
+} = format
 
 // Create default logger that outputs both to file and console
-const loggerBuilder = (labelName = undefined) => {
+const loggerFactory = (labelName = undefined) => {
   const logger = createLogger({
     // Minimum log level to output
-    level: config.logLevel,
+    level: logLevel,
     // Format of output
     format: combine(
       label({ label: labelName }),
@@ -23,20 +23,20 @@ const loggerBuilder = (labelName = undefined) => {
     transports: [
       // Outputs both to file and console
       new transports.File({
-        filename: config.logFilename,
+        filename: logFilename,
         decolorize: true,
       }),
       new transports.Console(),
     ],
-  });
+  })
 
   // Add stream for text
-  logger.stream = { write(message) { logger.info(message); } };
+  logger.stream = { write(message) { logger.info(message) } }
 
   // Add stream for json
-  logger.streamJson = { write(json) { logger.info(JSON.parse(json)); } };
+  logger.streamJson = { write(json) { logger.info(JSON.parse(json)) } }
 
-  return logger;
-};
+  return logger
+}
 
-module.exports = loggerBuilder;
+export default loggerFactory

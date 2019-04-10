@@ -1,10 +1,10 @@
-const { Router } = require('express');
-const list = require('./list');
+import { Router } from 'express'
+import list from './list'
 
-module.exports = (models) => {
-  const router = Router();
+export default (models) => {
+  const router = Router()
 
-  router.get('/', list(models));
+  router.get('/', list(models))
 
-  return router;
-};
+  return router
+}

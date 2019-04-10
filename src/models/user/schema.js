@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+import { Schema } from 'mongoose'
 
 const schema = new Schema({
   firstName: {
@@ -17,6 +17,6 @@ const schema = new Schema({
     type: String,
     required: [true],
   },
-});
+})
 
-module.exports = { schema };
+export default schema
