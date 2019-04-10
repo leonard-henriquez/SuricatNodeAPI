@@ -1,12 +1,12 @@
 import mongoose from 'mongoose'
-import { debug, mongoURI } from '.'
-import loggerFactory from './logger'
+import loggerFactory from '../helpers/logger'
+import * as config from '.'
 
-const logger = loggerFactory('db')
+const logger = loggerFactory('db', config)
 
 export default () => {
   // Set debug
-  if (debug) {
+  if (config.debug) {
     mongoose.set('debug', (coll, method, query, doc, options) => {
       logger.info({
         coll,
@@ -18,8 +18,11 @@ export default () => {
     })
   }
 
+  // Remove deprecation warning
+  mongoose.set('useCreateIndex', true)
+
   // Connect to MongoDb
-  mongoose.connect(mongoURI, { useNewUrlParser: true })
+  mongoose.connect(config.mongoURI, { useNewUrlParser: true })
     .then(() => logger.info('MongoDB connected…'))
     .catch(err => logger.error(err))
 

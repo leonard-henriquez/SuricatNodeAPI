@@ -4,7 +4,7 @@ import connect from './config/db'
 import middlewares from './config/middlewares'
 import routes from './config/routes'
 import errorHandler from './config/error-handler'
-import loggerFactory from './config/logger'
+import loggerFactory from './helpers/logger'
 
 
 // Instantiate express framework and apply middlewares

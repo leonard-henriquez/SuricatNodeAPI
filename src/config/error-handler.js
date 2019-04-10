@@ -1,12 +1,12 @@
-import { env } from '.'
-import loggerFactory from './logger'
+import * as config from '.'
+import loggerFactory from '../helpers/logger'
 
-const logger = loggerFactory('error')
+const logger = loggerFactory('error', config)
 
 // Build response for the client
 const response = (err) => {
   let msg = ''
-  if (env === 'development') {
+  if (config.env === 'development') {
     msg = err.message
   }
 

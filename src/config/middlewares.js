@@ -3,9 +3,10 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import methodOverride from 'method-override'
 import cors from 'cors'
-import loggerFactory from './logger'
+import * as config from '.'
+import loggerFactory from '../helpers/logger'
 
-const logger = loggerFactory('request')
+const logger = loggerFactory('request', config)
 
 const format = (tokens, req, res) => JSON.stringify({
   method: tokens.method(req, res),

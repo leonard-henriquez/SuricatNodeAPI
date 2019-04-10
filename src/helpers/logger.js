@@ -1,5 +1,4 @@
 import { createLogger, format, transports } from 'winston'
-import { logLevel, logFilename } from '.'
 
 // Destructures format for easier access
 const {
@@ -10,7 +9,21 @@ const {
 } = format
 
 // Create default logger that outputs both to file and console
-const loggerFactory = (labelName = undefined) => {
+const loggerFactory = (labelName = undefined, config = {}) => {
+  const { logFilename = undefined, logLevel = 'debug' } = config
+
+  const tsps = [
+    new transports.Console(),
+  ]
+
+  if (logFilename) {
+    const fileTsp = new transports.File({
+      filename: logFilename,
+      decolorize: true,
+    })
+    tsps.push(fileTsp)
+  }
+
   const logger = createLogger({
     // Minimum log level to output
     level: logLevel,
@@ -20,14 +33,7 @@ const loggerFactory = (labelName = undefined) => {
       timestamp(),
       prettyPrint(),
     ),
-    transports: [
-      // Outputs both to file and console
-      new transports.File({
-        filename: logFilename,
-        decolorize: true,
-      }),
-      new transports.Console(),
-    ],
+    transports: tsps,
   })
 
   // Add stream for text
