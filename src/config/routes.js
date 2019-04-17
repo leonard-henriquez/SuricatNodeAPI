@@ -1,8 +1,5 @@
 import { Router } from 'express'
-import User from '../models/user'
-import users from '../controllers/users'
-
-const models = { User }
+import usersController from '../controllers/users'
 
 // Register routes
 export default (app) => {
@@ -10,10 +7,10 @@ export default (app) => {
   const router = Router()
 
   // Create routes
-  router.use('/users', users(models))
+  router.use('/users', usersController)
 
   // Route for ping
-  router.get('/health', async (req, res) => {
+  router.get('/health', (req, res) => {
     res.status(200).send()
   })
 

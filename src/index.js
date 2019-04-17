@@ -23,11 +23,11 @@ routes(app)
 errorHandler(app)
 
 // Create server
-const start = async () => {
+const start = () => {
   const logger = loggerFactory('server')
 
   try {
-    await app.listen(port, host)
+    app.listen(port, host)
     logger.info(`Server listening on ${host}:${port} in ${env} mode`)
   } catch (err) {
     logger.error(err)

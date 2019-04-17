@@ -1,10 +1,8 @@
 import { Router } from 'express'
 import list from './list'
 
-export default (models) => {
-  const router = Router()
+const router = Router()
 
-  router.get('/', list(models))
+router.get('/', list)
 
-  return router
-}
+export default router
