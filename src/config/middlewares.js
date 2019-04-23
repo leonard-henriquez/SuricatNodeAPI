@@ -3,7 +3,7 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import methodOverride from 'method-override'
 import cors from 'cors'
-import * as config from '.'
+import config from '.'
 import loggerFactory from '../helpers/logger'
 
 const logger = loggerFactory('request', config)

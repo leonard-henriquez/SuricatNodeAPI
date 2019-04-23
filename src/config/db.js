@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import loggerFactory from '../helpers/logger'
-import * as config from '.'
+import config from '.'
 
 const logger = loggerFactory('db', config)
 
@@ -18,13 +18,10 @@ export default () => {
     })
   }
 
-  // Remove deprecation warning
-  mongoose.set('useCreateIndex', true)
-
   // Connect to MongoDb
-  mongoose.connect(config.mongoURI, { useNewUrlParser: true })
-    .then(() => logger.info('MongoDB connected…'))
-    .catch(err => logger.error(err))
+  mongoose.connect(config.mongo.URI, config.mongo.options)
+    .then(() => logger.info('MongoDB connected'))
+    .catch(error => logger.error(error))
 
   // Return connection
   return mongoose.connection

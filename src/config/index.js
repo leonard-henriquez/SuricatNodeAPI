@@ -1,14 +1,26 @@
 import {} from 'dotenv/config'
 import path from 'path'
 
-// Environment settings
-export const appRoot = path.resolve(path.join(__dirname, '..', '..'))
-export const env = process.env.NODE_ENV || 'development'
-export const host = process.env.HOST || '0.0.0.0'
-export const port = process.env.PORT || 3000
-export const debug = process.env.DEBUG || (env === 'development')
-export const mongoURI = process.env.MONGO_URI
+const appRoot = path.resolve(path.join(__dirname, '..', '..'))
+const env = process.env.NODE_ENV || 'development'
 
-// Logs
-export const logFilename = path.join(appRoot, 'logs', 'app.log')
-export const logLevel = process.env.LOG_LEVEL || 'debug'
+const config = {
+  // Environment settings
+  appRoot,
+  env,
+  host: process.env.HOST || '0.0.0.0',
+  port: process.env.PORT || 3000,
+  debug: process.env.DEBUG || (env === 'development'),
+
+  // Database
+  mongo: {
+    URI: process.env.MONGO_URI,
+    options: JSON.parse(process.env.MONGO_OPTIONS || '{}'),
+  },
+
+  // Logs
+  logFilename: path.join(appRoot, 'logs', 'app.log'),
+  logLevel: process.env.LOG_LEVEL || 'debug',
+}
+
+export default config

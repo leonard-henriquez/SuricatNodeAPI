@@ -1,11 +1,10 @@
 import express from 'express'
-import { env, port, host } from './config'
+import config from './config'
 import connect from './config/db'
 import middlewares from './config/middlewares'
 import routes from './config/routes'
 import errorHandler from './config/error-handler'
 import loggerFactory from './helpers/logger'
-
 
 // Instantiate express framework and apply middlewares
 const app = express()
@@ -24,7 +23,8 @@ errorHandler(app)
 
 // Create server
 const start = () => {
-  const logger = loggerFactory('server')
+  const { host, env, port } = config
+  const logger = loggerFactory('server', config)
 
   try {
     app.listen(port, host)

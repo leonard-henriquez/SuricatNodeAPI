@@ -1,4 +1,4 @@
-import * as config from '.'
+import config from '.'
 import loggerFactory from '../helpers/logger'
 
 const logger = loggerFactory('error', config)

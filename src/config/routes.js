@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import usersController from '../controllers/users'
+import userRouter from '../resources/user/user.router'
 
 // Register routes
 export default (app) => {
@@ -7,7 +7,7 @@ export default (app) => {
   const router = Router()
 
   // Create routes
-  router.use('/users', usersController)
+  router.use('/users', userRouter)
 
   // Route for ping
   router.get('/health', (req, res) => {
