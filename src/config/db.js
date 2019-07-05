@@ -7,9 +7,9 @@ const logger = loggerFactory('db', config)
 export default () => {
   // Set debug
   if (config.debug) {
-    mongoose.set('debug', (coll, method, query, doc, options) => {
+    mongoose.set('debug', (collection, method, query, doc, options) => {
       logger.info({
-        coll,
+        collection,
         method,
         query,
         doc,
