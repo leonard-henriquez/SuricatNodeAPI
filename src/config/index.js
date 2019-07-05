@@ -4,6 +4,13 @@ import path from 'path'
 const appRoot = path.resolve(path.join(__dirname, '..', '..'))
 const env = process.env.NODE_ENV || 'development'
 
+const mongoDefaultOptions = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+}
+const mongoEnvOptions = JSON.parse(process.env.MONGO_OPTIONS || '{}')
+const mongoOptions = Object.assign(mongoDefaultOptions, mongoEnvOptions)
+
 const config = {
   // Environment settings
   appRoot,
@@ -15,7 +22,7 @@ const config = {
   // Database
   mongo: {
     URI: process.env.MONGO_URI,
-    options: JSON.parse(process.env.MONGO_OPTIONS || '{}'),
+    options: mongoOptions,
   },
 
   // Logs
