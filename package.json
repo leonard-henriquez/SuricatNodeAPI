@@ -11,7 +11,7 @@
     "serve": "NODE_ENV=production LOG_LEVEL=error node dist/index.js"
   },
   "engines": {
-    "node": "10.15.3"
+    "node": "^10.16.0"
   },
   "author": "Leonard Henriquez",
   "license": "MIT",
