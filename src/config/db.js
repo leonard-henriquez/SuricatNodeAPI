@@ -2,11 +2,11 @@ import mongoose from 'mongoose'
 import loggerFactory from '../helpers/logger'
 import config from '.'
 
-const logger = loggerFactory('db', config)
+const logger = loggerFactory('db', config.get('log'))
 
 export default () => {
   // Set debug
-  if (config.debug) {
+  if (config.get('debug')) {
     mongoose.set('debug', (collection, method, query, doc, options) => {
       logger.info({
         collection,
@@ -19,7 +19,8 @@ export default () => {
   }
 
   // Connect to MongoDb
-  mongoose.connect(config.mongo.URI, config.mongo.options)
+  const mongo = config.get('mongo')
+  mongoose.connect(mongo.URI, mongo.options)
     .then(() => logger.info('MongoDB connected'))
     .catch(error => logger.error(error))
 

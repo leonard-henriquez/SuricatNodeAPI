@@ -6,7 +6,7 @@ import cors from 'cors'
 import config from '.'
 import loggerFactory from '../helpers/logger'
 
-const logger = loggerFactory('request', config)
+const logger = loggerFactory('request', config.get('log'))
 
 const format = (tokens, req, res) => JSON.stringify({
   method: tokens.method(req, res),

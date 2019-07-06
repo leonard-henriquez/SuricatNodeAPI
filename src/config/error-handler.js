@@ -1,12 +1,12 @@
 import config from '.'
 import loggerFactory from '../helpers/logger'
 
-const logger = loggerFactory('error', config)
+const logger = loggerFactory('error', config.get('log'))
 
 // Build response for the client
 const response = (err) => {
   let msg = ''
-  if (config.env === 'development') {
+  if (config.get('env') === 'development') {
     msg = err.message
   }
 

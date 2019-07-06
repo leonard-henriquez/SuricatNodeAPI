@@ -10,15 +10,15 @@ const {
 
 // Create default logger that outputs both to file and console
 const loggerFactory = (labelName = undefined, config = {}) => {
-  const { logFilename = undefined, logLevel = 'debug' } = config
+  const { filename = undefined, level = 'debug' } = config
 
   const tsps = [
     new transports.Console(),
   ]
 
-  if (logFilename) {
+  if (filename) {
     const fileTsp = new transports.File({
-      filename: logFilename,
+      filename,
       decolorize: true,
     })
     tsps.push(fileTsp)
@@ -26,7 +26,7 @@ const loggerFactory = (labelName = undefined, config = {}) => {
 
   const logger = createLogger({
     // Minimum log level to output
-    level: logLevel,
+    level,
     // Format of output
     format: combine(
       label({ label: labelName }),

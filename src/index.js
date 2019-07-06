@@ -23,8 +23,8 @@ errorHandler(app)
 
 // Create server
 const start = () => {
-  const { host, env, port } = config
-  const logger = loggerFactory('server', config)
+  const { host, env, port } = config.get()
+  const logger = loggerFactory('server', config.get('log'))
 
   try {
     app.listen(port, host)
